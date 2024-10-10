@@ -9,7 +9,7 @@ function setup()
 
 function draw() 
 {
-  
+  nave;
 }
 
 class Nave 
@@ -20,7 +20,7 @@ class Nave
       this.position = createVector(x, y);
       this.velocity = createVector(0, 0);
       this.acceleration = createVector(0, 0);
-      // Image(img, this.position.x, this.position.y, 50, 50);
+      new Image(img, this.position.x, this.position.y, 50, 50);
     }
 }
 
@@ -30,9 +30,15 @@ function InitializeNave()
   let posX = windowWidth / 4;
   let posY = windowHeight / 4;
 
-  // img = loadImage("recursos\imagenes\Fondo galaxia.jpg");
+  img = loadImage("recursos\imagenes\Fondo galaxia.jpg");
 
-  // nave = new Nave(mass, posX, posY, img);
+  nave = new Nave(mass, posX, posY, img);
+}
+
+function DrawPlayer()
+{
+  ImageMode(CENTER);
+  image(nave.position.x, nave.position.y, 20, 20);
 }
 
 // applyForce(force) 
