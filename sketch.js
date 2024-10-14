@@ -1,48 +1,72 @@
+let nave;
+let navePosition;
+let naveScale;
+let naveVelocity;
+let naveAcceleration;
+let naveMass;
+let gravity;
+
 function setup() 
 {
   createCanvas(windowWidth, windowHeight);
 
-  background(200);
+  nave = new Nave(1, windowWidth / 2, windowHeight / 2, 100, 100);
+
+  gravity = createVector(0, -0.1)
 
   InitializeNave();
+
+  nave = loadImage("Nave.png")
 }
 
 function draw() 
 {
-  nave;
+  DrawPlayer();
+
+  UpdatePosition();
+
+  Fall();
 }
 
 class Nave 
 {
-    constructor(m, x, y, img) 
+    constructor(m, x, y, h, w) 
     {
       this.mass = m;
       this.position = createVector(x, y);
       this.velocity = createVector(0, 0);
-      this.acceleration = createVector(0, 0);
-      new Image(img, this.position.x, this.position.y, 50, 50);
+      this.scale = createVector(h, w);
     }
 }
 
 function InitializeNave()
 {
-  let mass = 0.5;
-  let posX = windowWidth / 4;
-  let posY = windowHeight / 4;
-
-  img = loadImage("recursos\imagenes\Fondo galaxia.jpg");
-
-  nave = new Nave(mass, posX, posY, img);
+  navePosition = nave.position;
+  naveScale = nave.scale;
+  naveVelocity = nave.velocity;
+  naveMass = nave.mass;
 }
 
 function DrawPlayer()
 {
-  ImageMode(CENTER);
-  image(nave.position.x, nave.position.y, 20, 20);
+  imageMode(CENTER);
+  image(nave, navePosition.x, navePosition.y, naveScale.h, naveScale.w);
 }
 
-// applyForce(force) 
-// {
-//     let f = p5.Vector.div(force, this.mass);
-//     this.acceleration.add(f);
-// }
+function keyPressed()
+{
+  if(key === "w")
+  {
+    naveVelocity. y += 20;
+  }
+}
+
+function Fall()
+{
+  naveVelocity += gravity;
+}
+
+function UpdatePosition()
+{
+  navePosition += naveVelocity
+}
