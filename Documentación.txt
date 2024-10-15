@@ -1,0 +1,5 @@
+Vectores: https://p5js.org/es/reference/p5/p5.Vector/
+
+Rotate: https://p5js.org/reference/p5/rotate/
+
+FrameCount: https://p5js.org/reference/p5/frameCount/
