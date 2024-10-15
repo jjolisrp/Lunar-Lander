@@ -1,22 +1,21 @@
+//MIRAR DE USAR FRAMECOUNT COMO UN DELTATIME
+
 let nave;
-let navePosition;
-let naveScale;
-let naveVelocity;
-let naveAcceleration;
-let naveMass;
 let gravity;
+let UpVelocity;
+let rotateAngle;
 
 function setup() 
 {
   createCanvas(windowWidth, windowHeight);
 
+  InitializeKeyValues();
+
   nave = new Nave(1, windowWidth / 2, windowHeight / 2, 100, 100);
 
-  gravity = createVector(0, -0.1)
+  gravity = createVector(0.001, 0.02)
 
-  InitializeNave();
-
-  nave = loadImage("Nave.png")
+  naveImage = loadImage("Nave.png")
 }
 
 function draw() 
@@ -25,7 +24,27 @@ function draw()
 
   UpdatePosition();
 
+  //print(nave.position +  "\n");
+
   Fall();
+
+  //DETECTAR PULSACION DE LAS TECLAS
+  if(keyIsDown(UP_ARROW) === true)
+  {
+    nave.velocity.add(UpVelocity);
+  }
+  if(keyIsDown(LEFT_ARROW) === true)
+  {
+    rotate(rotateAngle);
+  }
+  if(keyIsDown(RIGHT_ARROW) === true)
+  {
+    
+  }
+  // if(keyIsDown(UP_ARROW) === true)
+  // {
+    
+  // }
 }
 
 class Nave 
@@ -39,34 +58,26 @@ class Nave
     }
 }
 
-function InitializeNave()
-{
-  navePosition = nave.position;
-  naveScale = nave.scale;
-  naveVelocity = nave.velocity;
-  naveMass = nave.mass;
-}
-
 function DrawPlayer()
 {
-  imageMode(CENTER);
-  image(nave, navePosition.x, navePosition.y, naveScale.h, naveScale.w);
-}
+  clear();
 
-function keyPressed()
-{
-  if(key === "w")
-  {
-    naveVelocity. y += 20;
-  }
+  imageMode(CENTER);
+  image(naveImage, nave.position.x, nave.position.y, nave.scale.h, nave.scale.w);
 }
 
 function Fall()
 {
-  naveVelocity += gravity;
+  nave.velocity.add(gravity);
 }
 
 function UpdatePosition()
 {
-  navePosition += naveVelocity
+  nave.position.add(nave.velocity)
+}
+
+function InitializeKeyValues()
+{
+  //INICIALIZAR LAS VARIABLES DE LAS KEYS/ARROWS
+  UpVelocity = createVector(0, -0.03);
 }
