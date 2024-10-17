@@ -1,9 +1,16 @@
 //MIRAR DE USAR FRAMECOUNT COMO UN DELTATIME
 
 let nave;
+let naveImage;
 let gravity;
 let UpVelocity;
 let rotateAngle;
+let forceDirection;
+
+function preload()
+{
+  naveImage = loadImage("Nave.png");
+}
 
 function setup() 
 {
@@ -14,12 +21,14 @@ function setup()
   nave = new Nave(1, windowWidth / 2, windowHeight / 2, 100, 100);
 
   gravity = createVector(0.001, 0.02)
-
-  naveImage = loadImage("Nave.png")
 }
 
 function draw() 
 {
+  clear();
+
+  background(0);
+
   DrawPlayer();
 
   UpdatePosition();
@@ -31,11 +40,12 @@ function draw()
   //DETECTAR PULSACION DE LAS TECLAS
   if(keyIsDown(UP_ARROW) === true)
   {
+    //He de actualizar la velocidad en funxcion de la direccionde la fuerza y la fuerza
     nave.velocity.add(UpVelocity);
   }
   if(keyIsDown(LEFT_ARROW) === true)
   {
-    rotate(rotateAngle);
+    nave.position.rotateAngle(50);
   }
   if(keyIsDown(RIGHT_ARROW) === true)
   {
@@ -60,10 +70,8 @@ class Nave
 
 function DrawPlayer()
 {
-  clear();
-
   imageMode(CENTER);
-  image(naveImage, nave.position.x, nave.position.y, nave.scale.h, nave.scale.w);
+  image(naveImage, nave.position.x, nave.position.y, nave.scale.x, nave.scale.y);
 }
 
 function Fall()
@@ -80,4 +88,9 @@ function InitializeKeyValues()
 {
   //INICIALIZAR LAS VARIABLES DE LAS KEYS/ARROWS
   UpVelocity = createVector(0, -0.03);
+}
+
+void CheckLimits()
+{
+
 }
