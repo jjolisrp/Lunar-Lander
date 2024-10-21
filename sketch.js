@@ -6,6 +6,7 @@ let gravity;
 let UpVelocity;
 let rotateAngle;
 let forceDirection;
+let iRotate;
 
 function preload()
 {
@@ -16,11 +17,17 @@ function setup()
 {
   createCanvas(windowWidth, windowHeight);
 
+  imageMode(CENTER);
+
+  angleMode(DEGREES);
+
   InitializeKeyValues();
 
   nave = new Nave(1, windowWidth / 2, windowHeight / 2, 100, 100);
 
   gravity = createVector(0.001, 0.02)
+
+  iRotate = 0;
 }
 
 function draw() 
@@ -45,16 +52,20 @@ function draw()
   }
   if(keyIsDown(LEFT_ARROW) === true)
   {
-    nave.position.rotateAngle(50);
+    // nave.position.rotateAngle(50);
+    UpVelocity.rotate(-1);
+
+    iRotate -= 1;
   }
   if(keyIsDown(RIGHT_ARROW) === true)
   {
+    UpVelocity.rotate(1);
+    iRotate += 1;
+  }
+  if(keyIsDown(DOWN_ARROW) === true)
+  {
     
   }
-  // if(keyIsDown(UP_ARROW) === true)
-  // {
-    
-  // }
 }
 
 class Nave 
@@ -70,8 +81,11 @@ class Nave
 
 function DrawPlayer()
 {
-  imageMode(CENTER);
-  image(naveImage, nave.position.x, nave.position.y, nave.scale.x, nave.scale.y);
+  push()
+  translate(nave.position.x, nave.position.y);
+  rotate(iRotate)
+  image(naveImage, 0, 0, nave.scale.x, nave.scale.y);
+  pop();
 }
 
 function Fall()
@@ -92,5 +106,8 @@ function InitializeKeyValues()
 
 void CheckLimits()
 {
-
+  if(nave.position.x <= 0)
+  {
+    nave.position.x = 0;
+  }
 }
