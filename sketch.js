@@ -25,7 +25,7 @@ function setup()
 
   nave = new Nave(1, windowWidth / 2, windowHeight / 2, 100, 100);
 
-  gravity = createVector(0.001, 0.02)
+  gravity = createVector(0.005, 0.02)
 
   iRotate = 0;
 }
@@ -44,10 +44,12 @@ function draw()
 
   Fall();
 
+  CheckLimits();
+
   //DETECTAR PULSACION DE LAS TECLAS
   if(keyIsDown(UP_ARROW) === true)
   {
-    //He de actualizar la velocidad en funxcion de la direccionde la fuerza y la fuerza
+    //He de actualizar la velocidad en funcion de la direccionde la fuerza y la fuerza
     nave.velocity.add(UpVelocity);
   }
   if(keyIsDown(LEFT_ARROW) === true)
@@ -104,10 +106,25 @@ function InitializeKeyValues()
   UpVelocity = createVector(0, -0.03);
 }
 
-void CheckLimits()
+function CheckLimits()
 {
-  if(nave.position.x <= 0)
+  if(nave.position.x <= 0 + 35)
   {
-    nave.position.x = 0;
+    nave.position.x = 0 + 35;
+  }
+
+  if(nave.position.x >= windowWidth - 35)
+  {
+    nave.position.x = windowWidth - 35;
+  }
+
+  if(nave.position.y >= windowHeight - 65)
+  {
+    nave.position.y = windowHeight - 65;
+  }
+
+  if(nave.position.y <= 0 + 50)
+  {
+    nave.position.y = 50;
   }
 }
