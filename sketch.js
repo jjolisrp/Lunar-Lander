@@ -49,14 +49,12 @@ function draw()
   //DETECTAR PULSACION DE LAS TECLAS
   if(keyIsDown(UP_ARROW) === true)
   {
-    //He de actualizar la velocidad en funcion de la direccionde la fuerza y la fuerza
+    //He de actualizar la velocidad en funcion de la direccion de la fuerza
     nave.velocity.add(UpVelocity);
   }
   if(keyIsDown(LEFT_ARROW) === true)
   {
-    // nave.position.rotateAngle(50);
     UpVelocity.rotate(-1);
-
     iRotate -= 1;
   }
   if(keyIsDown(RIGHT_ARROW) === true)
