@@ -2,6 +2,7 @@
 
 let nave;
 let naveImage;
+let explosionGif;
 let gravity;
 let UpVelocity;
 let rotateAngle;
@@ -11,6 +12,7 @@ let iRotate;
 function preload()
 {
   naveImage = loadImage("Nave.png");
+  explosionGif = createImage("explosion.gif")
 }
 
 function setup() 
