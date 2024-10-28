@@ -51,6 +51,8 @@ function draw()
 
     DrawPlayer();
 
+    point(50, 50);
+
     UpdatePosition();
 
     //print(nave.position +  "\n");
@@ -166,4 +168,11 @@ function CheckLimits()
     nave.position.y = 50;
     isPlayerAlive = false;
   }
+}
+
+function CreateMap()
+{
+  let limitsY = createVector(0, windowHeight);
+  let limitX = createVector(0, windowWidth);
+  
 }
