@@ -8,11 +8,14 @@ let UpVelocity;
 let rotateAngle;
 let forceDirection;
 let iRotate;
+let lastNavePosition;
+let isPlayerAlive;
+let isGamePaused;
 
 function preload()
 {
   naveImage = loadImage("Nave.png");
-  explosionGif = createImage("explosion.gif")
+  explosionGif = loadImage("explosion.gif")
 }
 
 function setup() 
@@ -30,43 +33,68 @@ function setup()
   gravity = createVector(0.005, 0.02)
 
   iRotate = 0;
+
+  isPlayerAlive = true;
+
+  isGamePaused = false;
+
+  lastNavePosition = createVector(0, 0);
 }
 
 function draw() 
 {
-  clear();
-
-  background(0);
-
-  DrawPlayer();
-
-  UpdatePosition();
-
-  //print(nave.position +  "\n");
-
-  Fall();
-
-  CheckLimits();
-
-  //DETECTAR PULSACION DE LAS TECLAS
-  if(keyIsDown(UP_ARROW) === true)
+  if(isPlayerAlive == true && !isGamePaused)
   {
-    //He de actualizar la velocidad en funcion de la direccion de la fuerza
-    nave.velocity.add(UpVelocity);
+    clear();
+
+    background(0);
+
+    DrawPlayer();
+
+    UpdatePosition();
+
+    //print(nave.position +  "\n");
+
+    Fall();
+
+    CheckLimits();
+
+    //DETECTAR PULSACION DE LAS TECLAS
+    if(keyIsDown(UP_ARROW) === true)
+    {
+      //He de actualizar la velocidad en funcion de la direccion de la fuerza
+      nave.velocity.add(UpVelocity);
+    }
+    if(keyIsDown(LEFT_ARROW) === true)
+    {
+      UpVelocity.rotate(-1);
+      iRotate -= 1;
+    }
+    if(keyIsDown(RIGHT_ARROW) === true)
+    {
+      UpVelocity.rotate(1);
+      iRotate += 1;
+    }
+    if(keyIsDown(DOWN_ARROW) === true)
+    {
+      
+    }
   }
-  if(keyIsDown(LEFT_ARROW) === true)
+  else if(isPlayerAlive == false && !isGamePaused)
   {
-    UpVelocity.rotate(-1);
-    iRotate -= 1;
+    clear();
+
+    background(0);
+
+    DrawOnPlayerDeath();
   }
-  if(keyIsDown(RIGHT_ARROW) === true)
+
+  if(keyIsDown(ESCAPE) === true)
   {
-    UpVelocity.rotate(1);
-    iRotate += 1;
-  }
-  if(keyIsDown(DOWN_ARROW) === true)
-  {
-    
+    if(isPlayerAlive)
+    {
+      isGamePaused = !isGamePaused;
+    }
   }
 }
 
@@ -90,6 +118,12 @@ function DrawPlayer()
   pop();
 }
 
+function DrawOnPlayerDeath()
+{
+  image(explosionGif, nave.position.x, nave.position.y, 200, 200);
+  isGamePaused = true;
+}
+
 function Fall()
 {
   nave.velocity.add(gravity);
@@ -108,23 +142,28 @@ function InitializeKeyValues()
 
 function CheckLimits()
 {
+  //DETECTA SI EL PLAYER SE SALE DE LOS LIMITES Y LO MATA
   if(nave.position.x <= 0 + 35)
   {
     nave.position.x = 0 + 35;
+    isPlayerAlive = false;
   }
 
   if(nave.position.x >= windowWidth - 35)
   {
     nave.position.x = windowWidth - 35;
+    isPlayerAlive = false;
   }
 
   if(nave.position.y >= windowHeight - 65)
   {
     nave.position.y = windowHeight - 65;
+    isPlayerAlive = false;
   }
 
   if(nave.position.y <= 0 + 50)
   {
     nave.position.y = 50;
+    isPlayerAlive = false;
   }
 }
