@@ -28,7 +28,7 @@ function setup()
 
   InitializeKeyValues();
 
-  nave = new Nave(1, windowWidth / 2, windowHeight / 2, 100, 100);
+  nave = new Nave(1, windowWidth / 2, windowHeight / 2, 50, 50);
 
   gravity = createVector(0.005, 0.02)
 
@@ -122,7 +122,7 @@ function DrawPlayer()
 
 function DrawOnPlayerDeath()
 {
-  image(explosionGif, nave.position.x, nave.position.y, 200, 200);
+  image(explosionGif, nave.position.x, nave.position.y - 35, 200, 200);
   isGamePaused = true;
 }
 
@@ -145,27 +145,27 @@ function InitializeKeyValues()
 function CheckLimits()
 {
   //DETECTA SI EL PLAYER SE SALE DE LOS LIMITES Y LO MATA
-  if(nave.position.x <= 0 + 35)
+  if(nave.position.x <= 0 + 15)
   {
-    nave.position.x = 0 + 35;
+    nave.position.x = 0 + 15;
     isPlayerAlive = false;
   }
 
-  if(nave.position.x >= windowWidth - 35)
+  if(nave.position.x >= windowWidth - 15)
   {
-    nave.position.x = windowWidth - 35;
+    nave.position.x = windowWidth - 15;
     isPlayerAlive = false;
   }
 
-  if(nave.position.y >= windowHeight - 65)
+  if(nave.position.y >= windowHeight - 35)
   {
-    nave.position.y = windowHeight - 65;
+    nave.position.y = windowHeight - 35;
     isPlayerAlive = false;
   }
 
-  if(nave.position.y <= 0 + 50)
+  if(nave.position.y <= 0 + 35)
   {
-    nave.position.y = 50;
+    nave.position.y = 35;
     isPlayerAlive = false;
   }
 }
