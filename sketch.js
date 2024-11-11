@@ -12,6 +12,8 @@ let lastNavePosition;
 let isPlayerAlive;
 let isGamePaused;
 
+let mapPointsArray = [];
+
 function preload()
 {
   naveImage = loadImage("Nave.png");
@@ -111,6 +113,14 @@ class Nave
     }
 }
 
+class MapPoint
+{
+  constructor(x, y)
+  {
+    this.position = CreateVector(x, y);
+  }
+}
+
 function DrawPlayer()
 {
   push()
@@ -175,4 +185,15 @@ function CreateMap()
   let limitsY = createVector(0, windowHeight);
   let limitX = createVector(0, windowWidth);
   
+  let pointsNumber = random(10, 15);
+  let pointsArray = [pointsNumber];
+
+  let position = CreateVector(windowWidth / pointsNumber, random(100, 200));
+  let point = new MapPoint(firstPosition);
+  pointsArray[0] = point;
+
+  for(let i = 0; i < pointsArray.length; i++)
+  {
+    // position.x = pointsArray[i -1]
+  }
 }
