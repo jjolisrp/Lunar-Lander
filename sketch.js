@@ -30,6 +30,8 @@ function setup()
 
   InitializeKeyValues();
 
+  CreateMap();
+
   nave = new Nave(1, windowWidth / 2, windowHeight / 2, 50, 50);
 
   gravity = createVector(0.005, 0.02)
@@ -53,7 +55,7 @@ function draw()
 
     DrawPlayer();
 
-    point(50, 50);
+    // point(50, 50);
 
     UpdatePosition();
 
@@ -117,7 +119,7 @@ class MapPoint
 {
   constructor(x, y)
   {
-    this.position = CreateVector(x, y);
+    this.position = createVector(x, y);
   }
 }
 
@@ -134,6 +136,11 @@ function DrawOnPlayerDeath()
 {
   image(explosionGif, nave.position.x, nave.position.y - 35, 200, 200);
   isGamePaused = true;
+}
+
+function DrawMap()
+{
+  
 }
 
 function Fall()
@@ -182,18 +189,24 @@ function CheckLimits()
 
 function CreateMap()
 {
-  let limitsY = createVector(0, windowHeight);
-  let limitX = createVector(0, windowWidth);
+  // let limitsY = createVector(0, windowHeight);
+  // let limitX = createVector(0, windowWidth);
   
   let pointsNumber = random(10, 15);
-  let pointsArray = [pointsNumber];
 
-  let position = CreateVector(windowWidth / pointsNumber, random(100, 200));
-  let point = new MapPoint(firstPosition);
-  pointsArray[0] = point;
+  let positionX;
+  let positionY;
+  let point;
 
-  for(let i = 0; i < pointsArray.length; i++)
+  for(let i = 0; i < pointsNumber; i++)
   {
-    // position.x = pointsArray[i -1]
+    positionX = windowWidth / i;
+    positionY = random(100, 200);
+
+    point = new MapPoint(positionX, positionY);
+
+    mapPointsArray.push(point);
+
+    print(mapPointsArray[i]);
   }
 }
