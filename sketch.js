@@ -74,7 +74,7 @@ function draw()
       nave.velocity.add(UpVelocity);
     }
     if(keyIsDown(LEFT_ARROW) === true)
-    {
+    {http://127.0.0.1:3000/index.html
       UpVelocity.rotate(-1);
       iRotate -= 1;
     }
@@ -145,6 +145,7 @@ function DrawMap()
   noFill();
   stroke(255);
   beginShape();
+  curveVertex(0, 0);
 
   for(let i = 0; i < mapPointsArray.length; i++)
   {
@@ -153,6 +154,8 @@ function DrawMap()
 
     curveVertex(positionY, positionX);
   }
+
+  curveVertex(mapPointsArray[mapPointsArray.length - 1].position.x, mapPointsArray[mapPointsArray.length - 1].position.y);
 
   endShape();
 }
@@ -217,10 +220,12 @@ function CreateMap()
   {
     positionX = positionInWindow;
     positionInWindow += windowWidth / pointsNumber;
-    positionY = random(windowHeight, windowHeight - 300);
+    positionY = random(windowHeight - 50, windowHeight - 300);
 
     point = new MapPoint(positionX, positionY);
 
     mapPointsArray.push(point);
   }
+
+  mapPointsArray.push(new MapPoint(windowWidth, random(windowHeight - 300, windowHeight - 50)));
 }
