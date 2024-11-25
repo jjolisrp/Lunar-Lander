@@ -55,7 +55,9 @@ function draw()
 
     DrawPlayer();
 
-    // point(50, 50);
+    print(mapPointsArray[1].MapPoint + "\n");
+
+    DrawMap();
 
     UpdatePosition();
 
@@ -140,7 +142,19 @@ function DrawOnPlayerDeath()
 
 function DrawMap()
 {
-  
+  noFill();
+  stroke(255);
+  beginShape();
+
+  for(let i = 0; i < mapPointsArray.length; i++)
+  {
+    let positionY = mapPointsArray[i].position.x;
+    let positionX = mapPointsArray[i].position.y;
+
+    curveVertex(positionY, positionX);
+  }
+
+  endShape();
 }
 
 function Fall()
@@ -193,6 +207,7 @@ function CreateMap()
   // let limitX = createVector(0, windowWidth);
   
   let pointsNumber = random(10, 15);
+  let positionInWindow = 0;
 
   let positionX;
   let positionY;
@@ -200,13 +215,12 @@ function CreateMap()
 
   for(let i = 0; i < pointsNumber; i++)
   {
-    positionX = windowWidth / i;
-    positionY = random(100, 200);
+    positionX = positionInWindow;
+    positionInWindow += windowWidth / pointsNumber;
+    positionY = random(windowHeight, windowHeight - 300);
 
     point = new MapPoint(positionX, positionY);
 
     mapPointsArray.push(point);
-
-    print(mapPointsArray[i]);
   }
 }
