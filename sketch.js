@@ -13,6 +13,8 @@ let isPlayerAlive;
 let isGamePaused;
 
 let mapPointsArray = [];
+let interpolatedPoints = [];
+let mapCollisionRadius;
 
 function preload()
 {
@@ -38,6 +40,8 @@ function setup()
 
   iRotate = 0;
 
+  let mapCollisionRadius = 1;
+
   isPlayerAlive = true;
 
   isGamePaused = false;
@@ -55,8 +59,6 @@ function draw()
 
     DrawPlayer();
 
-    print(mapPointsArray[1].MapPoint + "\n");
-
     DrawMap();
 
     UpdatePosition();
@@ -67,6 +69,11 @@ function draw()
 
     CheckLimits();
 
+    if(CheckCollision(nave.position))
+    {
+      isPlayerAlive = false;
+    }
+
     //DETECTAR PULSACION DE LAS TECLAS
     if(keyIsDown(UP_ARROW) === true)
     {
@@ -74,7 +81,7 @@ function draw()
       nave.velocity.add(UpVelocity);
     }
     if(keyIsDown(LEFT_ARROW) === true)
-    {http://127.0.0.1:3000/index.html
+    {
       UpVelocity.rotate(-1);
       iRotate -= 1;
     }
@@ -228,4 +235,41 @@ function CreateMap()
   }
 
   mapPointsArray.push(new MapPoint(windowWidth, random(windowHeight - 300, windowHeight - 50)));
+}
+
+function DistanceToSegment(p, A, B) //Devuelve la distancia mas corta del jugador al segmento 
+{
+  let AP = p5.Vector.sub(p, A); //Distancia del vector A a P(nave)
+  let AB = p5.Vector.sub(B, A); //Distancia del vector A a B
+
+  let magnitudeAB = AB.magSq(); //Calcular la magnitud del vector AB
+  let ABdotAP = AP.dot(AB); //Hacer el producto escalar del vector AP a AB
+
+  let t = constrain(ABdotAP / magnitudeAB, 0, 1); //Normalizar el vector resultantes, mantenerlo entre el 0 y el 1
+  let closestPoint = p5.Vector.add(A, AB.mult(t));
+
+  push();
+  strokeWeight(10);
+  point(closestPoint.x, closestPoint.y);
+  pop();
+
+  return p5.Vector.dist(p, closestPoint);
+}
+
+function CheckCollision(playerPosition)
+{
+  for(let i = 0; i < mapPointsArray.length - 1; i++)
+  {
+    let A = mapPointsArray[i].position;
+    let B = mapPointsArray[i + 1].position;
+    let distance = DistanceToSegment(playerPosition, A, B);
+
+    if(distance <= mapCollisionRadius)
+    {
+      print("colisiona\n");
+      return true;
+    }
+  }
+  print("no colisiona\n");
+  return false;
 }
