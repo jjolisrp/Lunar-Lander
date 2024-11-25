@@ -246,7 +246,7 @@ function DistanceToSegment(p, A, B) //Devuelve la distancia mas corta del jugado
   let ABdotAP = AP.dot(AB); //Hacer el producto escalar del vector AP a AB
 
   let t = constrain(ABdotAP / magnitudeAB, 0, 1); //Normalizar el vector resultantes, mantenerlo entre el 0 y el 1
-  let closestPoint = p5.Vector.add(A, AB.mult(t));
+  let closestPoint = p5.Vector.add(A, AB.mult(t)); //Calcula la posicion del vector mas cercano al Vector AB al punto P
 
   push();
   strokeWeight(10);
