@@ -40,7 +40,7 @@ function setup()
 
   iRotate = 0;
 
-  let mapCollisionRadius = 1;
+  mapCollisionRadius = 20;
 
   isPlayerAlive = true;
 
@@ -213,9 +213,6 @@ function CheckLimits()
 
 function CreateMap()
 {
-  // let limitsY = createVector(0, windowHeight);
-  // let limitX = createVector(0, windowWidth);
-  
   let pointsNumber = random(10, 15);
   let positionInWindow = 0;
 
@@ -272,4 +269,9 @@ function CheckCollision(playerPosition)
   }
   print("no colisiona\n");
   return false;
+}
+
+function CheckNaveLanding()
+{
+  
 }
