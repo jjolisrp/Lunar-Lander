@@ -69,10 +69,7 @@ function draw()
 
     CheckLimits();
 
-    if(CheckCollision(nave.position))
-    {
-      isPlayerAlive = false;
-    }
+    CheckCollision(nave.position)
 
     //DETECTAR PULSACION DE LAS TECLAS
     if(keyIsDown(UP_ARROW) === true)
@@ -263,15 +260,28 @@ function CheckCollision(playerPosition)
 
     if(distance <= mapCollisionRadius)
     {
-      print("colisiona\n");
-      return true;
+      let segmentAngle = atan2(B.y - A.y, B.x - A.x);
+      let naveAngle = atan2(-UpVelocity.y, UpVelocity.x);
+
+      let angleDif = abs(degrees(segmentAngle - naveAngle)) % 360;
+      if(angleDif > 180)
+      {
+        angleDif = 360 - angleDif;
+      }
+
+      print("Segment Angle " + segmentAngle);
+      print("Player Angle " + naveAngle);
+      print("Total " + angleDif);
+
+      if(angleDif <= 80 && nave.velocity.mag() < 1)
+      {
+        print("bien aterrizado");
+        isGamePaused = true;
+      }
+      else
+      {
+        isPlayerAlive = false;
+      }
     }
   }
-  print("no colisiona\n");
-  return false;
-}
-
-function CheckNaveLanding()
-{
-  
 }
