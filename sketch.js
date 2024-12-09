@@ -63,8 +63,6 @@ function draw()
 
     UpdatePosition();
 
-    //print(nave.position +  "\n");
-
     Fall();
 
     CheckLimits();
@@ -275,7 +273,6 @@ function CheckCollision(playerPosition)
 
       if(angleDif <= 80 && nave.velocity.mag() < 1)
       {
-        print("bien aterrizado");
         isGamePaused = true;
       }
       else
