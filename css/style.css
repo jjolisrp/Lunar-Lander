@@ -1,8 +1,21 @@
+@font-face {
+    font-family: "star7";
+    src: url(../recursos/Fuentes/star7/STAR7.ttf);
+}
+
+@font-face {
+    font-family: "BackToFuture";
+    src: url(../recursos/Fuentes/BackToFuture/BTTF.ttf);
+}
+
 body
 {
     background-color: black;
+    background-image: url(../recursos/imagenes/estrellas-en-el-universo-morado.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     margin: 0; /*Quita el margen predeterminado del body*/
-    font-family: Arial, Helvetica, sans-serif;
     display: grid; /*Define un contenedor con un estilo de cuadricula*/
     grid-template-columns: 1fr 2fr 1fr; /*Columnas: izquierda-centro-derecha, el numero define el ancho de la columna*/
     grid-template-rows: auto; /*Las filas se ajustan automaticamente al contenido*/
@@ -11,42 +24,57 @@ body
 
 .left, .right
 {
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
+    font-family: "star7", sans-serif;
     padding: 10px;
     display: flex; /*Alinear el contenido, por defecto en filas*/
     align-items: center;
     justify-content: center;
 }
 
+.left, .right p
+{
+    color: #00cf68;
+}
+
 .center
 {
+    font-family: "BackToFuture", sans-serif;
     display: flex; /*Alinear el contenido*/
     flex-direction: column; /*Colocar el contenido por columnas*/
     align-items: center; /*Alinear los elementos en el centro de manera horizontal*/
     justify-content: flex-start; /*Colocar los elementos al principio de la columna vertical*/
-    /* background-color: aliceblue; */
     padding: 50px;
 }
 
 .center h1
 {
-    margin: 0 0 150px;
+    margin: 0 0 10px;
     font-size: 100px;
-    color: #0D6759;
-    border-color: #7AB317;
-    -webkit-text-stroke-width: 3px;
+    color: #00cf68;
+    -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: #7AB317;
+}
+
+.center h2
+{
+    margin: 0 0 50px;
+    font-size: 100px;
+    color: #00460c;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #152200;
 }
 
 .center button
 {
     margin: 50px 0; /*Espaciado arriba y abajo*/
     padding: 10px 50px; /*Espacio interior vertical y horiontal*/
-    font-size: 50px;
+    font-family: "BackToFuture", sans-serif;
+    font-size: 70px;
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: #07af01;
     cursor: pointer; /*Cuando el cursos pasa por encima, lo cambia a la mano*/
-    
+
     /*Ocultar el contenedor de la caja*/
     background: none;
     border: none;
@@ -55,6 +83,12 @@ body
 
 .center img
 {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
+    padding: 0 10px;
+}
+
+.rotateImage45
+{
+    transform: rotate(45deg);
 }
