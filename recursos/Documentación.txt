@@ -7,4 +7,4 @@ FrameCount: https://p5js.org/reference/p5/frameCount/
 
 GUARDAR VARIABLES ENTRE VENTANAS
 1.-localStorage: persisten incluso después de cerrar y volver a abrir el navegador ---Puede Evolucionar---> Cookies: persisten durante más tiempo, pero son mas complicadas de gestionar
-2.-sessionStorage:persisten solo mientras la ventana esté abierta
+2.-sessionStorage: persisten solo mientras la ventana esté abierta

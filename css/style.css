@@ -8,7 +8,8 @@
     src: url(../recursos/Fuentes/BackToFuture/BTTF.ttf);
 }
 
-body
+/*--------------------------------------PAGINA INDEX--------------------------------------*/
+.indexPage
 {
     background-color: black;
     background-image: url(../recursos/imagenes/estrellas-en-el-universo-morado.png);
@@ -22,22 +23,9 @@ body
     height: 100vh; /*Estirar el body hasta el final de la ventana del navegador*/
 }
 
-.left, .right
-{
-    /* background-color: aquamarine; */
-    font-family: "star7", sans-serif;
-    padding: 10px;
-    display: flex; /*Alinear el contenido, por defecto en filas*/
-    align-items: center;
-    justify-content: center;
-}
 
-.left, .right p
-{
-    color: #00cf68;
-}
 
-.center
+.centerIndex
 {
     font-family: "BackToFuture", sans-serif;
     display: flex; /*Alinear el contenido*/
@@ -47,7 +35,7 @@ body
     padding: 50px;
 }
 
-.center h1
+.centerIndex > h1
 {
     margin: 0 0 10px;
     font-size: 100px;
@@ -56,7 +44,7 @@ body
     -webkit-text-stroke-color: #7AB317;
 }
 
-.center h2
+.centerIndex > h2
 {
     margin: 0 0 50px;
     font-size: 100px;
@@ -65,7 +53,7 @@ body
     -webkit-text-stroke-color: #152200;
 }
 
-.center button
+.centerIndex > button
 {
     margin: 50px 0; /*Espaciado arriba y abajo*/
     padding: 10px 50px; /*Espacio interior vertical y horiontal*/
@@ -81,11 +69,107 @@ body
     box-shadow: none;
 }
 
-.center img
+.centerIndex img
 {
     width: 60px;
     height: 60px;
     padding: 0 10px;
+}
+
+/*--------------------------------------PAGINA OPTIONS--------------------------------------*/
+.optionsPage
+{
+    background-color: black;
+    background-image: url(../recursos/imagenes/estrellas-en-el-universo-morado.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0; /*Quita el margen predeterminado del body*/
+    display: grid; /*Define un contenedor con un estilo de cuadricula*/
+    grid-template-columns: 1fr 2fr 1fr; /*Columnas: izquierda-centro-derecha, el numero define el ancho de la columna*/
+    grid-template-rows: auto; /*Las filas se ajustan automaticamente al contenido*/
+    height: 100vh; /*Estirar el body hasta el final de la ventana del navegador*/
+}
+
+
+
+.centerOptions
+{
+    font-family: "BackToFuture", sans-serif;
+    display: flex; /*Alinear el contenido*/
+    flex-direction: column; /*Colocar el contenido por columnas*/
+    align-items: center; /*Alinear los elementos en el centro de manera horizontal*/
+    justify-content: flex-start; /*Colocar los elementos al principio de la columna vertical*/
+    padding: 50px;
+}
+
+.centerOptions > h1
+{
+    margin: 0 0 10px;
+    font-size: 100px;
+    color: #00cf68;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #7AB317;
+}
+
+.centerOptions > h2
+{
+    margin: 0 0 50px;
+    font-size: 100px;
+    color: #00460c;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #152200;
+}
+
+.centerOptions > button
+{
+    margin: 50px 0; /*Espaciado arriba y abajo*/
+    padding: 10px 50px; /*Espacio interior vertical y horiontal*/
+    font-family: "BackToFuture", sans-serif;
+    font-size: 70px;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #07af01;
+    cursor: pointer; /*Cuando el cursos pasa por encima, lo cambia a la mano*/
+
+    /*Ocultar el contenedor de la caja*/
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+.centerOptions input[type="range"]
+{
+    -webkit-appearance: none;
+    width: 300px;
+    height: 20px;
+    border-radius: 5px;
+    background: linear-gradient(to right, #00cf68 50%, #00460c 50%);
+    outline: none;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.centerOptions input[type="range"]::-webkit-slider-thumb
+{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 0px;
+    height: 0px;
+}
+
+/*--------------------------------------COMMON STYLES--------------------------------------*/
+.left, .right
+{
+    font-family: "star7", sans-serif;
+    padding: 10px;
+    display: flex; /*Alinear el contenido, por defecto en filas*/
+    align-items: center;
+    justify-content: center;
+}
+
+.left, .right > p
+{
+    color: #00cf68;
 }
 
 .rotateImage45
