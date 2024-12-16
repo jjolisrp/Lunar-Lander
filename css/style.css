@@ -99,42 +99,28 @@
     display: flex; /*Alinear el contenido*/
     flex-direction: column; /*Colocar el contenido por columnas*/
     align-items: center; /*Alinear los elementos en el centro de manera horizontal*/
-    justify-content: flex-start; /*Colocar los elementos al principio de la columna vertical*/
+    justify-content: center; /*Colocar los elementos al principio de la columna vertical*/
     padding: 50px;
 }
 
 .centerOptions > h1
 {
     margin: 0 0 10px;
-    font-size: 100px;
+    font-size: 50px;
     color: #00cf68;
+    text-align: center;
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: #7AB317;
 }
 
 .centerOptions > h2
 {
-    margin: 0 0 50px;
-    font-size: 100px;
+    margin: 0 0 30px;
+    font-size: 50px;
     color: #00460c;
+    text-align: center;
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: #152200;
-}
-
-.centerOptions > button
-{
-    margin: 50px 0; /*Espaciado arriba y abajo*/
-    padding: 10px 50px; /*Espacio interior vertical y horiontal*/
-    font-family: "BackToFuture", sans-serif;
-    font-size: 70px;
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: #07af01;
-    cursor: pointer; /*Cuando el cursos pasa por encima, lo cambia a la mano*/
-
-    /*Ocultar el contenedor de la caja*/
-    background: none;
-    border: none;
-    box-shadow: none;
 }
 
 .centerOptions input[type="range"]
@@ -143,7 +129,7 @@
     width: 300px;
     height: 20px;
     border-radius: 5px;
-    background: linear-gradient(to right, #00cf68 50%, #00460c 50%);
+    background: linear-gradient(to right, #00cf68 50%, #868686 50%);
     outline: none;
     cursor: pointer;
     transition: background 0.3s ease-in-out;
@@ -155,6 +141,34 @@
     appearance: none;
     width: 0px;
     height: 0px;
+}
+
+.centerOptionsContainer
+{
+    font-family: "star7", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    padding: 10px 0;
+    width: 80vb; /* Revisar por que creo que esto no esta bien */
+}
+
+.centerOptions label
+{
+    font-size: 30px;
+    padding-right: 15px;
+}
+
+.centerOptions span
+{
+    font-size: 30px;
+}
+
+.optionsSliderContainer
+{
+    margin: 20px 0 20px;
 }
 
 /*--------------------------------------COMMON STYLES--------------------------------------*/
@@ -170,6 +184,14 @@
 .left, .right > p
 {
     color: #00cf68;
+}
+
+.backButton
+{
+    background-color: #ff0000;
+    margin: 20px 0 0;
+    font-size: 50px;
+    cursor: pointer;
 }
 
 .rotateImage45

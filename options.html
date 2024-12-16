@@ -19,11 +19,22 @@
 	<div class="centerOptions">
 		<h1>Options</h1>
 		<h2>Menu</h2>
-		<div class="slider">
-			<label for="music-slider">Music</label>
-			<input type="range" id="music-slider" min="0" max="100" value="50">
-			<span id="music-value">50%</span>
+		<div class="centerOptionsContainer">
+
+			<div class="optionsSliderContainer">
+				<label for="music-slider">Music</label>
+				<input type="range" id="music-slider" min="0" max="100" value="50">
+				<span id="music-value">50%</span>
+			</div>
+
+			<div class="optionsSliderContainer">
+				<label for="sfx-slider">SFX</label>
+				<input type="range" id="sfx-slider" min="0" max="100" value="50">
+				<span id="sfx-value">50%</span>
+			</div>
+
 		</div>
+		<button class="backButton" onclick="ChangePage('index.html')">Back</button>
 	</div>
 
 	<div class="right">
