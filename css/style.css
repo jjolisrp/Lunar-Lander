@@ -152,7 +152,8 @@
     justify-content: center;
     background-color: #ffffff;
     padding: 10px 0;
-    width: 80vb; /* Revisar por que creo que esto no esta bien */
+    width: 35vw; /* Revisar por que creo que esto no esta bien */
+    min-width: 555px;
 }
 
 .centerOptions label
@@ -177,7 +178,7 @@
     font-family: "star7", sans-serif;
     padding: 10px;
     display: flex; /*Alinear el contenido, por defecto en filas*/
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
 }
 
