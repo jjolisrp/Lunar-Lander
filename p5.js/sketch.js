@@ -1,5 +1,5 @@
 //MIRAR DE USAR FRAMECOUNT COMO UN DELTATIME
-
+//GAME
 let nave;
 let naveImage;
 let explosionGif;
@@ -12,9 +12,15 @@ let lastNavePosition;
 let isPlayerAlive;
 let isGamePaused;
 
+//MAP
 let mapPointsArray = [];
 let interpolatedPoints = [];
 let mapCollisionRadius;
+
+//HUD
+let distanceToFloor = 0;
+let realDistanceToFloor = 10000000;
+let naveAngle = 0;
 
 function preload()
 {
@@ -61,7 +67,11 @@ function draw()
 
     DrawMap();
 
+    DrawHud();
+
     UpdatePosition();
+
+    UpdateHud();
 
     Fall();
 
@@ -162,14 +172,36 @@ function DrawMap()
   endShape();
 }
 
+function DrawHud()
+{
+  //HEIGH POSITION
+  push();
+    fill(255);
+    rect(10, 150, 50, distanceToFloor);
+  pop();
+
+  rect(10, 150, 50, 400);
+}
+
+function DrawPauseMenu()
+ {
+
+ }
+
 function Fall()
 {
   nave.velocity.add(gravity);
 }
 
-function UpdatePosition()
+function UpdatePosition() 
 {
   nave.position.add(nave.velocity)
+}
+
+function UpdateHud()
+{
+  //HEIGH POSITION
+  distanceToFloor = ((realDistanceToFloor % 400) + 400) % 400
 }
 
 function InitializeKeyValues()
@@ -255,6 +287,11 @@ function CheckCollision(playerPosition)
     let A = mapPointsArray[i].position;
     let B = mapPointsArray[i + 1].position;
     let distance = DistanceToSegment(playerPosition, A, B);
+    
+    if(distance < realDistanceToFloor)
+    {
+      realDistanceToFloor = distance;
+    }
 
     if(distance <= mapCollisionRadius)
     {
