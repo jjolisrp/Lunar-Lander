@@ -20,7 +20,7 @@ let mapCollisionRadius;
 //HUD
 let distanceToFloor = 0;
 let realDistanceToFloor = 10000000;
-let naveAngle = 0;
+let naveAngleHud = 0;
 
 function preload()
 {
@@ -181,12 +181,14 @@ function DrawHud()
   pop();
 
   rect(10, 150, 50, 400);
+
+  text(naveAngleHud, 50, 50);
 }
 
 function DrawPauseMenu()
- {
+{
 
- }
+}
 
 function Fall()
 {
@@ -202,6 +204,9 @@ function UpdateHud()
 {
   //HEIGH POSITION
   distanceToFloor = ((realDistanceToFloor % 400) + 400) % 400
+
+  //NAVE ANGLE
+  naveAngleHud = atan2(-UpVelocity.y, UpVelocity.x);
 }
 
 function InitializeKeyValues()
@@ -303,6 +308,8 @@ function CheckCollision(playerPosition)
       {
         angleDif = 360 - angleDif;
       }
+
+      print(naveAngleHud);
 
       print("Segment Angle " + segmentAngle);
       print("Player Angle " + naveAngle);
