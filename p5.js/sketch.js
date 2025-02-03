@@ -21,6 +21,7 @@ let mapCollisionRadius;
 let distanceToFloor = 0;
 let realDistanceToFloor = 10000000;
 let naveAngleHud = 0;
+let fuel = 100;
 
 function preload()
 {
@@ -182,7 +183,8 @@ function DrawHud()
 
   rect(10, 150, 50, 400);
 
-  text(naveAngleHud, 50, 50);
+  textSize(40);
+  text(round(naveAngleHud, 0) + "º", windowWidth / 2, 50);
 }
 
 function DrawPauseMenu()
@@ -203,10 +205,15 @@ function UpdatePosition()
 function UpdateHud()
 {
   //HEIGH POSITION
-  distanceToFloor = ((realDistanceToFloor % 400) + 400) % 400
+  distanceToFloor = ((realDistanceToFloor % 400) + 400) % 400;
 
   //NAVE ANGLE
   naveAngleHud = atan2(-UpVelocity.y, UpVelocity.x);
+}
+
+function UpdateFuel()
+{
+  fuel -= 0.001
 }
 
 function InitializeKeyValues()
