@@ -183,8 +183,15 @@ function DrawHud()
 
   rect(10, 150, 50, 400);
 
+  //Angle
   textSize(40);
   text(round(naveAngleHud, 0) + "º", windowWidth / 2, 50);
+
+  //Fuel
+  push();
+    fill(255);
+    rect(windowWidth - 500, 50, 200, 50);
+  pop();
 }
 
 function DrawPauseMenu()
