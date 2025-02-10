@@ -21,7 +21,7 @@ let mapCollisionRadius;
 let distanceToFloor = 0;
 let realDistanceToFloor = 10000000;
 let naveAngleHud = 0;
-let fuel = 100;
+let fuel = 300;
 
 function preload()
 {
@@ -79,6 +79,9 @@ function draw()
     CheckLimits();
 
     CheckCollision(nave.position)
+
+    //Extra Conditions
+    CheckExtraConditions();
 
     //DETECTAR PULSACION DE LAS TECLAS
     if(keyIsDown(UP_ARROW) === true)
@@ -175,6 +178,8 @@ function DrawMap()
 
 function DrawHud()
 {
+  textSize(40);
+
   //HEIGH POSITION
   push();
     fill(255);
@@ -182,15 +187,19 @@ function DrawHud()
   pop();
 
   rect(10, 150, 50, 400);
+  push();
+    translate(70, windowHeight/3);
+    rotate(90);
+    text("Altitude", 0, 0);
+  pop();
 
   //Angle
-  textSize(40);
   text(round(naveAngleHud, 0) + "º", windowWidth / 2, 50);
 
   //Fuel
   push();
     fill(255);
-    rect(windowWidth - 500, 50, 200, 50);
+    rect(windowWidth - 500, 50, fuel, 50);
   pop();
 }
 
@@ -216,6 +225,9 @@ function UpdateHud()
 
   //NAVE ANGLE
   naveAngleHud = atan2(-UpVelocity.y, UpVelocity.x);
+
+  //FUEL
+  fuel -= 0.5;
 }
 
 function UpdateFuel()
@@ -338,5 +350,13 @@ function CheckCollision(playerPosition)
         isPlayerAlive = false;
       }
     }
+  }
+}
+
+function CheckExtraConditions()
+{
+  if(fuel <= 0)
+  {
+    isPlayerAlive = false;
   }
 }
