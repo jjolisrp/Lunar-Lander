@@ -22,6 +22,8 @@ let distanceToFloor = 0;
 let realDistanceToFloor = 10000000;
 let naveAngleHud = 0;
 let fuel = 300;
+let restartButton;
+let mainMenuButton;
 
 function preload()
 {
@@ -60,6 +62,8 @@ function draw()
 {
   if(isPlayerAlive == true && !isGamePaused)
   {
+    restartButton = null;
+
     clear();
 
     background(0);
@@ -99,10 +103,6 @@ function draw()
       UpVelocity.rotate(1);
       iRotate += 1;
     }
-    if(keyIsDown(DOWN_ARROW) === true)
-    {
-      
-    }
   }
   else if(isPlayerAlive == false && !isGamePaused)
   {
@@ -112,13 +112,15 @@ function draw()
 
     DrawOnPlayerDeath();
   }
+}
 
-  if(keyIsDown(ESCAPE) === true)
+function keyPressed()
+{
+  if(keyCode == ESCAPE)
   {
-    if(isPlayerAlive)
-    {
-      isGamePaused = !isGamePaused;
-    }
+    isGamePaused = !isGamePaused;
+
+    DrawPauseMenu();
   }
 }
 
@@ -187,6 +189,7 @@ function DrawHud()
   pop();
 
   rect(10, 150, 50, 400);
+
   push();
     translate(70, windowHeight/3);
     rotate(90);
@@ -198,14 +201,30 @@ function DrawHud()
 
   //Fuel
   push();
-    fill(255);
-    rect(windowWidth - 500, 50, fuel, 50);
+    fill(255, 0, 0);
+    stroke(0);
+    rect(windowWidth/1.4, 50, fuel, 50);
+  pop();
+
+  push();
+    fill(255, 0, 0);
+    stroke(255, 0, 0);
+    translate(windowWidth/1.4, 50);
+    text("Fuel", 150, -5);
   pop();
 }
 
 function DrawPauseMenu()
 {
+  translate((windowWidth / 2) - 250, (windowHeight / 2) - 250);
 
+  fill(255);
+  rect(0, 0, 500, 500);
+
+  text("RESTART");
+
+  // restartButton = createButton("Restart");
+  // restartButton.position(windowWidth / 2, (windowHeight / 2) - 100);
 }
 
 function Fall()
@@ -224,15 +243,10 @@ function UpdateHud()
   distanceToFloor = ((realDistanceToFloor % 400) + 400) % 400;
 
   //NAVE ANGLE
-  naveAngleHud = atan2(-UpVelocity.y, UpVelocity.x);
+  naveAngleHud = abs(atan2(UpVelocity.x, -UpVelocity.y));
 
   //FUEL
   fuel -= 0.5;
-}
-
-function UpdateFuel()
-{
-  fuel -= 0.001
 }
 
 function InitializeKeyValues()
