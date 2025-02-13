@@ -221,10 +221,10 @@ function DrawPauseMenu()
   fill(255);
   rect(0, 0, 500, 500);
 
-  text("RESTART");
-
-  // restartButton = createButton("Restart");
-  // restartButton.position(windowWidth / 2, (windowHeight / 2) - 100);
+  restartButton = createButton("Restart");
+  restartButton.position(windowWidth / 2, (windowHeight / 2) - 100);
+  restartButton.style("font-size", "24px");
+  restartButton.mousePressed(gotolink);
 }
 
 function Fall()
@@ -373,4 +373,9 @@ function CheckExtraConditions()
   {
     isPlayerAlive = false;
   }
+}
+
+function gotolink()
+{
+  window.open("http://127.0.0.1:3000//game.html", '_self');
 }
