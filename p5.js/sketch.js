@@ -229,9 +229,10 @@ function DrawPauseMenu()
   rect(0, 0, 500, 500);
 
   restartButton = createButton("Restart");
-  restartButton.position(windowWidth / 2, (windowHeight / 2) - 100);
-  restartButton.style("font-size", "24px");
-  restartButton.style("padding", "20px 40px");
+  restartButton.size(200, 100);
+  // restartButton.position((windowWidth * 0.5) - 100, windowHeight * 0.5);
+  restartButton.position((windowWidth * 0.5) - 100, (windowHeight * 0.5) - 50);
+  restartButton.style("font-size", "30px");
   restartButton.mousePressed(() => ChangePage("/game.html"));
 }
 
