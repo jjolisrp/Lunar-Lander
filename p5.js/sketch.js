@@ -12,6 +12,10 @@ let lastNavePosition;
 let isPlayerAlive;
 let isGamePaused;
 
+//FONTS
+let star7;
+let BackToFuture;
+
 //MAP
 let mapPointsArray = [];
 let interpolatedPoints = [];
@@ -29,6 +33,8 @@ function preload()
 {
   naveImage = loadImage("Nave.png");
   explosionGif = loadImage("explosion.gif")
+  star7 = loadFont("/recursos/Fuentes/star7/STAR7.ttf");
+  BackToFuture = loadFont("/recursos/Fuentes/BackToFuture/BTTF.ttf");
 }
 
 function setup() 
@@ -181,6 +187,7 @@ function DrawMap()
 function DrawHud()
 {
   textSize(40);
+  textFont(star7);
 
   //HEIGH POSITION
   push();
