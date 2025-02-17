@@ -224,7 +224,8 @@ function DrawPauseMenu()
   restartButton = createButton("Restart");
   restartButton.position(windowWidth / 2, (windowHeight / 2) - 100);
   restartButton.style("font-size", "24px");
-  restartButton.mousePressed(gotolink);
+  restartButton.style("padding", "20px 40px");
+  restartButton.mousePressed(() => ChangePage("/game.html"));
 }
 
 function Fall()
@@ -373,9 +374,4 @@ function CheckExtraConditions()
   {
     isPlayerAlive = false;
   }
-}
-
-function gotolink()
-{
-  window.open("http://127.0.0.1:3000//game.html", '_self');
 }
