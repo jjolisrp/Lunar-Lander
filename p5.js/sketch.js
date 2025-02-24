@@ -228,8 +228,9 @@ function DrawPauseMenu()
 {
   translate((windowWidth / 2) - 250, (windowHeight / 2) - 250);
 
-  fill(255);
+  fill(34, 223, 0);
   rect(0, 0, 500, 500);
+  noStroke(); ///////////////////////////////////////No funciona/////////////////////////////////////
 
   restartButton.show();
   mainMenuButton.show();
@@ -390,12 +391,22 @@ function CreatePauseMenuButtons()
   restartButton = createButton("Restart");
   restartButton.size(200, 100);
   restartButton.position((windowWidth * 0.5) - 100, (windowHeight * 0.5) - 150);
-  restartButton.style("font-size", "30px");
+  restartButton.style("font-size", "40px");
+  // mainMenuButton.style("font-family", BackToFuture);
+  restartButton.style("-webkit-text-stroke-width", "1px");
+  restartButton.style("-webkit-text-stroke-color" , "#07af01");
+  restartButton.style("border-color", "#152200");
+  // restartButton.style("background-color", "07af01");
   restartButton.mousePressed(() => ChangePage("/game.html"));
 
   mainMenuButton = createButton("Main Menu");
   mainMenuButton.size(200, 100);
   mainMenuButton.position((windowWidth * 0.5) - 100, (windowHeight * 0.5) + 50);
-  mainMenuButton.style("font-size", "30px");
+  mainMenuButton.style("font-size", "40px");
+  // mainMenuButton.style("font-family", BackToFuture);
+  mainMenuButton.style("-webkit-text-stroke-width", "1px");
+  mainMenuButton.style("-webkit-text-stroke-color" , "#07af01");
+  restartButton.style("border-color", "#152200");
+  // restartButton.style("background-color", "07af01");
   mainMenuButton.mousePressed(() => ChangePage("/index.html"));
 }
