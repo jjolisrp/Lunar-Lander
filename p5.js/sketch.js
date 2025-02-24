@@ -49,6 +49,8 @@ function setup()
 
   CreateMap();
 
+  CreatePauseMenuButtons();
+
   nave = new Nave(1, windowWidth / 2, windowHeight / 2, 50, 50);
 
   gravity = createVector(0.005, 0.02)
@@ -68,7 +70,8 @@ function draw()
 {
   if(isPlayerAlive == true && !isGamePaused)
   {
-    restartButton = null;
+    restartButton.hide();
+    mainMenuButton.hide();
 
     clear();
 
@@ -228,19 +231,17 @@ function DrawPauseMenu()
   fill(255);
   rect(0, 0, 500, 500);
 
-  restartButton = createButton("Restart");
-  restartButton.size(200, 100);
-  // restartButton.position((windowWidth * 0.5) - 100, windowHeight * 0.5);
-  restartButton.position((windowWidth * 0.5) - 100, (windowHeight * 0.5) - 50);
-  restartButton.style("font-size", "30px");
-  restartButton.mousePressed(() => ChangePage("/game.html"));
+  restartButton.show();
+  mainMenuButton.show();
 }
 
+//Actualiza la velocidad de la nave teniendo en cuenta la gravedad
 function Fall()
 {
   nave.velocity.add(gravity);
 }
 
+//Actualiza la posicion de la nave en funcion de la velocidad
 function UpdatePosition() 
 {
   nave.position.add(nave.velocity)
@@ -382,4 +383,19 @@ function CheckExtraConditions()
   {
     isPlayerAlive = false;
   }
+}
+
+function CreatePauseMenuButtons()
+{
+  restartButton = createButton("Restart");
+  restartButton.size(200, 100);
+  restartButton.position((windowWidth * 0.5) - 100, (windowHeight * 0.5) - 150);
+  restartButton.style("font-size", "30px");
+  restartButton.mousePressed(() => ChangePage("/game.html"));
+
+  mainMenuButton = createButton("Main Menu");
+  mainMenuButton.size(200, 100);
+  mainMenuButton.position((windowWidth * 0.5) - 100, (windowHeight * 0.5) + 50);
+  mainMenuButton.style("font-size", "30px");
+  mainMenuButton.mousePressed(() => ChangePage("/index.html"));
 }
