@@ -51,7 +51,7 @@ function setup()
 
   CreatePauseMenuButtons();
 
-  nave = new Nave(1, windowWidth / 2, windowHeight / 2, 50, 50);
+  nave = new Nave(1, windowWidth / 4, windowHeight / 4, 50, 50);
 
   gravity = createVector(0.005, 0.02)
 
@@ -119,7 +119,7 @@ function draw()
 
     background(0);
 
-    DrawOnPlayerDeath();
+    DrawOnPlayerDeath("YOU LOSE");
   }
 }
 
@@ -161,9 +161,16 @@ function DrawPlayer()
   pop();
 }
 
-function DrawOnPlayerDeath()
+function DrawOnPlayerDeath(Text)
 {
+  textSize(100);
+
   image(explosionGif, nave.position.x, nave.position.y - 35, 200, 200);
+
+  text(Text, windowWidth / 2, windowHeight / 7);
+
+  DrawPauseMenu();
+
   isGamePaused = true;
 }
 
@@ -392,21 +399,21 @@ function CreatePauseMenuButtons()
   restartButton.size(200, 100);
   restartButton.position((windowWidth * 0.5) - 100, (windowHeight * 0.5) - 150);
   restartButton.style("font-size", "40px");
-  // mainMenuButton.style("font-family", BackToFuture);
+  restartButton.style("font-family", "BackToFuture");
   restartButton.style("-webkit-text-stroke-width", "1px");
   restartButton.style("-webkit-text-stroke-color" , "#07af01");
   restartButton.style("border-color", "#152200");
-  // restartButton.style("background-color", "07af01");
+  restartButton.style("background-color", "#78f274");
   restartButton.mousePressed(() => ChangePage("/game.html"));
 
   mainMenuButton = createButton("Main Menu");
   mainMenuButton.size(200, 100);
   mainMenuButton.position((windowWidth * 0.5) - 100, (windowHeight * 0.5) + 50);
   mainMenuButton.style("font-size", "40px");
-  // mainMenuButton.style("font-family", BackToFuture);
+  mainMenuButton.style("font-family", "BackToFuture");
   mainMenuButton.style("-webkit-text-stroke-width", "1px");
   mainMenuButton.style("-webkit-text-stroke-color" , "#07af01");
-  restartButton.style("border-color", "#152200");
-  // restartButton.style("background-color", "07af01");
+  mainMenuButton.style("border-color", "#152200");
+  mainMenuButton.style("background-color", "#78f274");
   mainMenuButton.mousePressed(() => ChangePage("/index.html"));
 }
